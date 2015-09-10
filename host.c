@@ -25,7 +25,10 @@ void report_errors(lua_State *L, int status)
 
 int main(int argc, char** argv)
 {
-    const char* file = argv[1];
+    int status;
+    const char* file;
+
+    file = argv[1];
 
     lua_State *L = lua_open();
     luaL_openlibs(L); // 5.1 way to do it
@@ -33,7 +36,8 @@ int main(int argc, char** argv)
     lua_register(L, "host_function", host_function);
     fprintf(stderr, "running: %s\n", file);
 
-    int status = luaL_loadfile(L, file);
+    status = luaL_loadfile(L, file);
+
     if (status == 0) {
         status = lua_pcall(L, 0, LUA_MULTRET, 0); // execute
     }
