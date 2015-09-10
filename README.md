@@ -17,5 +17,3 @@ make
 **run:**
 
 ./chost ./guest.lua
-
-# luabindings
